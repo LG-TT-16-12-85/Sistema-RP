@@ -1,0 +1,42 @@
+#basic-modal-content {
+	display: none;
+}
+
+#simplemodal-overlay {
+	background-color: #000; 
+	cursor: wait;
+}
+
+#simplemodal-container {
+	height: 630px;
+	width: 550px; 
+	color: #013567;
+	background-color: #FFFFFF; 
+	border:4px solid #013567;
+}
+
+#simplemodal-container fieldset{
+	width: 450px;
+	margin: 0 0 0 30px;
+	padding: 3px;
+}
+
+#simplemodal-container .header {
+	background:#013567;
+	height: 30px;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 4px 0 0 10px;
+	color:#FFFFFF;
+}
+
+#simplemodal-container .header a{
+	text-decoration: none;
+	color: #FFFFFF;
+	position: absolute;
+	left: 525px;
+}
+
+#simplemodal-container #basic-modal-content {
+	padding:0;
+}

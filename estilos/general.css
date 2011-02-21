@@ -1,0 +1,330 @@
+@charset "utf-8";
+/*
+------------------------------------------------------------------------------
+                         Hoja de estilo sistema RP:
+   
+   Esta hoja de estilos se encuetra ordenada en tres secciones en donde
+los elementos de cada una de ellas se encontrarán en orden alfabético :
+
+      -Sección 1: Contiene las reglas utilizadas para cada TAG en general
+	  -Sección 2: Contiene las reglas utilizadas para cada ID en general
+	  -Sección 3: Contiene las reglas utilizadas para cada CLASS en general
+------------------------------------------------------------------------------
+*/
+
+/*
+------------------------------------------------------------------------------
+                            Principia sección 1
+------------------------------------------------------------------------------
+*/
+form, p {
+    font: lighter 12px 'Century Gothic', Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+body, html{
+    font: lighter 12px 'Century Gothic', Arial, Helvetica, sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+h1 {
+    color: #013567;
+    font: bold 16px 'Century Gothic', Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+h2{
+    font: bold 1.5em 'Century Gothic', Arial, Helvetica, sans-serif;
+    color: #013567;
+}
+th{
+    font-weight: bold;
+}
+label {
+    color: #013567;
+	font: bold 11px 'Century Gothic', Arial, Helvetica, sans-serif;
+}
+input, textarea, select {
+    color: #013567;
+    background: #FFFFFF;
+    border: 1px solid #013567;
+    font: lighter 11px 'Century Gothic', Arial, Helvetica, sans-serif;
+    width:auto;
+}
+fieldset {
+    border: 1px dashed #013567;
+    margin: 10px 0;
+    padding: 10px;
+    width: 800px;
+}
+legend {
+    color: #013567;
+    background-color: #FFFFFF;
+    font-weight: bold;
+    font-size: 12px;
+    margin-left: 10px;
+}
+/*
+------------------------------------------------------------------------------
+                               Termina sección 1
+------------------------------------------------------------------------------
+*/
+
+/*
+------------------------------------------------------------------------------
+                               Principia sección 2
+------------------------------------------------------------------------------
+*/
+#cabecera{
+    margin-bottom: 50px;
+}
+#calendar{
+    color: #013567;
+}
+#check_todos_evento{
+    border: 0;
+}
+#contenedor {
+    min-height: 50%;
+    height: auto !important;
+    height: 100%;
+    width: 1100px;
+    margin: 0 auto;
+}
+#encabezado {
+    height: 120px;
+    background-color: #013567;
+}
+#error {
+    color: #013567;
+    padding-top: 50px;
+    text-align: center;
+}
+#error a {
+    font-size: 14px;
+}
+#guardar_evento{
+    position: absolute;
+    left: 940px;
+    top: 155px;
+}
+#logo-itesm{
+    float: left;
+    margin-left: 110px;
+    margin-top: 7px;
+}
+#logo-mini{
+    float: left;
+    margin-left: 255px;
+    margin-top: 10px;
+}
+#logo-pi{
+    float: right;
+    margin-right: 110px;
+    margin-top: 7px;
+}
+#mas_grupo_evento{
+    width: 30px;
+}
+#menu {
+    height: 30px;
+    background-color: #013567;
+    border-top: dashed #CC3 1px;
+    width: 700px;
+    float: right;
+}
+#menu ul {
+    color: #FFFFFF;
+    list-style: none;
+    margin: 0;
+    padding: 5px 0 0 0;
+}
+#menu li {
+    display: inline;
+    border-right: solid #FFFFFF 2px;
+    padding-right: 2px;
+    margin-left: 30px;
+    margin-right: 20px;
+}
+#menu li a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+#menu li a:hover {
+    color: #CCCC33;
+    text-decoration: none;
+}
+#menu .actual {
+    font-weight: bold;
+    color: #CCCC33;
+}
+#mensaje_sin_datos{
+    margin: 0 auto;
+    padding-top: 150px;
+    height: 200px;
+    text-align: center;
+    background-color: #C2EFCD
+}
+#minimenu {
+
+    height: 30px;
+    padding-top: 20px;
+    padding-right: 70px;
+    float: right;
+    border-bottom: 1px solid #013567;
+}
+#minimenu ul {
+    color: #FFFFFF;
+    list-style: none;
+    margin: 0;
+    padding: 5px 0 0 0;
+}
+#minimenu li {
+    display: inline;
+    margin-left: 27px;
+}
+#minimenu li a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+#minimenu li a:hover {
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+#minimenu .actual {
+    font-weight: bold;
+    color: #013567;
+}
+#pie {
+    margin-top: 50px;
+    background-color: #013567;
+    background-repeat: no-repeat;
+    height: 130px;
+    text-align: center;
+}
+#pie p{
+    margin-left: 10px;
+    margin-top: 10px;
+    color: #FFFFFF;
+    float: left;
+}
+#titulo {
+    width: 500px;
+    height: 30px;
+}
+#visitas {
+    width: 800px;
+    margin: 0 auto;
+}
+#retroalimentacion{
+	width: 800px;
+    margin: 0 auto;
+}
+#registro {
+    color: #013567;
+    width: 700px;
+    margin: 0 auto;
+}
+#registro p{
+    padding: 1px 1px;
+}
+#registro ul, #registro li{
+    font: lighter 12px 'Century Gothic', Arial, Helvetica, sans-serif;
+    margin: 0 20px;
+    padding: 0;
+    list-style: square;
+}
+/*
+------------------------------------------------------------------------------
+                                Termina sección 2
+------------------------------------------------------------------------------
+*/
+
+/*
+------------------------------------------------------------------------------
+                               Principia sección 3
+------------------------------------------------------------------------------
+*/
+.confirma_fecha, .confirmaentrevista, .confirmarepresentante, .confirmaactividad {
+    border: 1px solid #FFFFFF;
+}
+.confirma_radios{
+    border: 0;
+}
+.contenido_visita_1 {
+    margin: 10px 0;
+    font: lighter 13px 'Century Gothic', Arial, Helvetica, sans-serif;
+    border: 1px dashed #013567;
+    background-color: #C2EFCD
+}
+.contenido_visita_2 {
+    margin: 10px 0;
+    font: lighter 13px 'Century Gothic', Arial, Helvetica, sans-serif;
+    border: 1px dashed #013567;
+    background-color: #DFB8B5
+}
+.contenido_visita_0 {
+    margin: 10px 0;
+    font: lighter 13px 'Century Gothic', Arial, Helvetica, sans-serif;
+    border: 1px dashed #013567;
+    background-color: #EFEC95
+}
+.datos_visita{
+    margin-left: 20px;
+}
+.editar_visita{
+    margin-left: 20px;
+}
+.dentro_evento{
+    position: absolute;
+    top: 25px;
+    left: 5px;
+}
+.label {
+    text-align: right;
+}
+.label_eventos{
+    width: 130px;
+}
+.selectentrevista{
+    width:150px;
+}
+.script div{
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 250px;
+    color: #FFFFFF;
+    background-color: #013567;
+    position: absolute;
+    text-align: center;
+}
+.submit {
+    margin: 10px 0;
+    color: #FFFFFF;
+    background: #013567;
+    border: 1px outset #013567;
+    font: bold 11px 'Century Gothic', Arial, Helvetica, sans-serif;
+}
+.mas {
+    margin: 10px 0;
+    color: #FFFFFF;
+    background: #013567;
+    border: 1px outset #013567;
+    width: 30px;
+    font: bold 11px 'Century Gothic', Arial, Helvetica, sans-serif;
+}
+.titulo_mes {
+    font: bold 16px 'Century Gothic', Arial, Helvetica, sans-serif;
+    margin-left: -50px;
+}
+.titulo_visita {
+    font: bold 13px 'Century Gothic', Arial, Helvetica, sans-serif;
+}
+/*
+------------------------------------------------------------------------------
+                                Termina sección 3
+------------------------------------------------------------------------------
+*/

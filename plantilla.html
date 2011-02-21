@@ -1,0 +1,525 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Plantilla</title>
+<!-- Estilo para el selector de fechas -->
+<link rel="stylesheet" type="text/css" media="screen" href="estilos/datePicker.css" />
+<!-- Librerias jQuery -->
+<script type="text/javascript" src="script/jquery.min.js"></script>
+<script type="text/javascript" src="script/jquery.livequery.js"></script>
+<!-- Plugins para el selector de fechas -->
+<script type="text/javascript" src="script/jquery.date.js"></script>
+<script type="text/javascript" src="script/jquery.datePicker.js"></script>
+<!--[if IE]><script type="text/javascript" src="script/jquery.bgiframe.js"></script><![endif]-->
+<style type="text/css">
+/*
+------------------------------------------------------------------------------
+                         Hoja de estilo sistema RP:
+   
+   Esta hoja de estilos se encuetra ordenada en tres secciones en donde
+los elementos de cada una de ellas se encontrarán en orden alfabético :
+
+      -Sección 1: Contiene las reglas utilizadas para cada TAG en general
+	  -Sección 2: Contiene las reglas utilizadas para cada ID en general
+	  -Sección 3: Contiene las reglas utilizadas para cada CLASS en general
+------------------------------------------------------------------------------
+*/
+
+/*
+------------------------------------------------------------------------------
+                            Principia sección 1
+------------------------------------------------------------------------------
+*/
+body, form, p {
+	font: lighter 11px 'Century Gothic', Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+h1 {
+	color: #013567;
+	font: bold 16px 'Century Gothic', Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+label {
+	color: #013567;
+}
+input, textarea, select {
+	color: #013567;
+	background: #FFFFFF;
+	border: 1px solid #013567;
+	font: lighter 11px 'Century Gothic', Arial, Helvetica, sans-serif;
+}
+fieldset {
+	border: 1px dashed #013567;
+	margin: 10px 0;
+	padding: 10px;
+	width: 600px;
+}
+legend {
+	color: #013567;
+	background-color: #FFFFFF;
+	font-weight: bold;
+	font-size: 12px;
+	margin-left: 10px;
+}
+/*
+------------------------------------------------------------------------------
+                               Termina sección 1
+------------------------------------------------------------------------------
+*/
+
+/*
+------------------------------------------------------------------------------
+                               Principia sección 2
+------------------------------------------------------------------------------
+*/
+#contenedor {
+	width: 900px;
+	margin: 0 auto;
+}
+#contenido {
+	width: 800px;
+	margin: 0 auto;
+}
+#encabezado {
+	height: 100px;
+	background-color: #013567;
+}
+#menu {
+	height: 30px;
+	background-color: #013567;
+	width: 450px;
+	margin-left: 450px;
+}
+#menu ul {
+	color: #FFFFFF;
+	list-style: none;
+	margin: 0;
+	padding: 5px 0 0 0;
+}
+#menu li {
+	display: inline;
+	margin-left: 20px;
+}
+#menu li a {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+#menu li a:hover {
+	color: #CCCC33;
+	text-decoration: none;
+}
+#menu .actual {
+	font-weight: bold;
+	color: #CCCC33;
+}
+#minimenu {
+	width: 450px;
+	height: 30px;
+	padding-top: 40px;
+	margin-left: 450px;
+	border-bottom: 1px solid #013567;
+}
+#minimenu ul {
+	color: #013567;
+	list-style: none;
+	margin: 0;
+	padding: 5px 0 0 0;
+}
+#minimenu li {
+	display: inline;
+	margin-left: 20px;
+}
+#minimenu li a {
+	color: #013567;
+	text-decoration: none;
+}
+#minimenu li a:hover {
+	color: #013567;
+	text-decoration: underline;
+}
+#minimenu .actual {
+	font-weight: bold;
+	color: #013567;
+}
+#pie {
+	background-image: url(imagenes/logomini.png);
+	background-repeat: no-repeat;
+	height: 80px;
+}
+#titulo {
+	width: 200px;
+	height: 30px;
+}
+#visitas {
+	width: 500px;
+	margin: 0 auto;
+}
+/*
+------------------------------------------------------------------------------
+                                Termina sección 2
+------------------------------------------------------------------------------
+*/
+
+/*
+------------------------------------------------------------------------------
+                               Principia sección 3
+------------------------------------------------------------------------------
+*/
+.confirma_fecha, .confirmaentrevista, .confirmarepresentante, .confirmaactividad {
+	border: 1px solid #FFFFFF;
+}
+.label {
+	text-align: right;
+}
+.submit {
+	margin: 10px 0;
+	color: #FFFFFF;
+	background: #013567;
+	border: 1px outset #013567;
+	font: bold 11px 'Century Gothic', Arial, Helvetica, sans-serif;
+}
+/*
+------------------------------------------------------------------------------
+                                Termina sección 3
+------------------------------------------------------------------------------
+*/
+</style>
+<script type="text/javascript">
+  var contador_representantes = 0;
+  var contador_entrevistados = 0;
+  var contador_actividades = 0;
+  $(document).ready(function()
+  {
+	  var option_en_seleccionuniversidad = $('#seleccionuniversidad option').size();
+	  var option_en_seleccioncoordinador = $('#seleccioncoordinador option').size();
+	  
+	  if(option_en_seleccionuniversidad > 1){
+		  $("#tablaUniversidad").hide();
+	  }else{
+		  $('#seleccionuniversidad').attr('disabled', true);
+	  }
+	  
+	  if(option_en_seleccioncoordinador > 1){
+		  $("#tablaCoordinador").hide();
+	  }else{
+		  $('#seleccioncoordinador').attr('disabled', true);
+	  }
+	  
+	  $(".selectrepresentante").hide();
+	  $(".selectentrevista").hide();
+	  $('.datepick').datePicker();
+	  
+	  $('#masNombreRepresentante').live("click", function(){
+		 contador_representantes++;
+	     $('#representantes').append(
+			'<table id="tablaNombres_'+contador_representantes+'">'+
+			 '<tr>'+
+			   '<td class="label"><label for="nombrerepresentante_'+contador_representantes+'">Nombre:</label></td>'+
+			   '<td><input type="text" class="inputrepresentante" id="nombrerepresentante_'+contador_representantes+'" name="nombre_representante_'+contador_representantes+'" /></td>'+
+			   '<td><select id="seleccionrepresentante_'+contador_representantes+'" class="selectrepresentante" name="seleccionrepresentante_'+contador_representantes+'">'+
+                    '<option value="nuevo_representante">Nuevo representante</option>'+
+                  '</select></td>'+
+			   '<td class="label"><label for="confirmarepresentante_'+contador_representantes+'">Confirmado</label></td>'+
+			   '<td><input type="checkbox" id="confirmarepresentante_'+contador_representantes+'" class="confirmarepresentante" name="confirmarepresentante_'+contador_representantes+'" value="confirmarepresentante'+contador_representantes+'" /></td>'+
+			 '</tr>'+
+			'</table>');
+		 $("#seleccionrepresentante_"+contador_representantes).hide();
+	  });
+	  $('#masNombreEntrevistas').live("click", function(){
+		 contador_entrevistados++;
+	     $('#entrevistas').append(
+			  '<table id="tablaEntrevistas_'+contador_entrevistados+'">'+
+			   '<tr>'+
+				 '<td class="label"><label for="nombreentrevista_'+contador_entrevistados+'">Nombre:</label></td>'+
+				 '<td><input type="text" class="inputentrevista" id="nombreentrevista_'+contador_entrevistados+'" name="nombre_entrevista_'+contador_entrevistados+'" /></td>'+
+                  '<td><select id="seleccionentrevista_'+contador_entrevistados+'" class="selectentrevista" name="seleccionentrevista_'+contador_entrevistados+'">'+
+                    '<option value="nuevo_entrevista">Nuevo anfitrión</option>'+
+                  '</select></td>'+
+				 '<td class="label"><label for="confirmaentrevista_'+contador_entrevistados+'">Confirmado</label></td>'+
+				 '<td><input type="checkbox" id="confirmaentrevista_'+contador_entrevistados+'" class="confirmaentrevista" name="confirmaentrevista_'+contador_entrevistados+'" value="confirmaentrevista_'+contador_entrevistados+'" /></td>'+
+			  '</tr>'+
+			 '</table>');
+	     $("#seleccionentrevista_"+contador_entrevistados).hide();
+	  });
+	  $('#masNombreActividad').live("click", function(){
+		 contador_actividades++;
+	     $('#actividades').append(
+			  '<table id="tablaActividades_'+contador_actividades+'">'+
+			   '<tr>'+
+				 '<td class="label"><label for="nombreactividad_'+contador_actividades+'">Actividad:</label></td>'+
+				 '<td><input type="text" class="inputactividad" id="nombreactividad_'+contador_actividades+'" name="nombre_actividad_'+contador_actividades+'" /></td>'+
+				 '<td class="label"><label for="confirmaactividad_'+contador_actividades+'">Confirmado</label></td>'+
+				 '<td><input type="checkbox" id="confirmaactividad_'+contador_actividades+'" class="confirmaactividad" name="confirmaactividad_'+contador_actividades+'" value="confirmaactividad_'+contador_actividades+'" /></td>'+
+			  '</tr>'+
+			 '</table>');
+	  });
+	  
+	  
+	  $('.confirmarepresentante').livequery("click", function(){
+         if($(this).is(':checked') && !$("#nombrerepresentante_"+$(this).attr('id').split("_")[1]).is(':hidden')){
+			 var id_actual = $(this).attr('id');
+			 $('#tablaNombres_'+id_actual.split("_")[1]).append(
+             	'<tr class="nuevo_representante">'+
+                  '<td>Titulo:</td>'+
+                  '<td><input type="text" id="titulorepresentante" name="titulo_representante" /></td>'+
+                '</tr>');
+	     }
+		 else{
+			var id_actual = $(this).attr('id');
+		 	$('#tablaNombres_'+id_actual.split("_")[1]+' .nuevo_representante').remove();
+		 }
+	  });
+	 
+	  $('.confirmaentrevista').livequery("click", function(){
+         if($(this).is(':checked') && !$("#nombreentrevista_"+$(this).attr('id').split("_")[1]).is(':hidden')){
+			 var id_actual = $(this).attr('id');
+			 $('#tablaEntrevistas_'+id_actual.split("_")[1]).append(
+             	'<tr class="nuevo_entrevista">'+
+                  '<td>Titulo:</td>'+
+                  '<td><input type="text" id="tituloentrevista" name="titulo_entrevista" /></td>'+
+                '</tr>');
+	     }
+		 else{
+			var id_actual = $(this).attr('id');
+		 	$('#tablaEntrevistas_'+id_actual.split("_")[1]+' .nuevo_entrevista').remove();
+		 }
+	  });
+	 
+	 
+	  $("select").livequery("change", function(){
+		if(this.id.split("_")[0] == "seleccionrepresentante"){
+			if(this.value == "nuevo_representante"){
+				$("#nombrerepresentante_"+ this.id.split("_")[1]).show();
+				$("#seleccionrepresentante_"+ this.id.split("_")[1]).hide();
+			}
+		}else if(this.id.split("_")[0] == "seleccionentrevista"){
+			if(this.value == "nuevo_entrevista"){
+				$("#nombreentrevista_"+ this.id.split("_")[1]).show();
+				$("#seleccionentrevista_"+ this.id.split("_")[1]).hide();
+			}
+		}else if(this.id == "seleccionuniversidad"){
+			if(this.value == "nueva_universidad"){
+				$("#tablaUniversidad").show();
+			}
+			else{
+				$("#tablaUniversidad").hide();
+			}
+		}else if(this.id == "seleccioncoordinador"){
+			if(this.value == "nuevo_coordinador"){
+				$("#tablaCoordinador").show();
+			}
+			else{
+				$("#tablaCoordinador").hide();
+			}
+		}
+      });
+  });
+</script>
+</head>
+<body>
+<div id="contenedor">
+  <div id="cabecera">
+    <div id="encabezado"><img src="imagenes/logo-itesm.jpg" width="213" height="100" alt="ITESM" /></div>
+    <div id="menu">
+      <ul>
+        <li><a href='#'>Visitas</a></li>
+        <li><a href='#'>Agenda</a></li>
+        <li><a href='#'>Retroalimentación</a></li>
+        <li><a href='#'>Historial</a></li>
+        <li><a href='#'>Acerca de...</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="cuerpo">
+    <div id="titulo">
+      <h1>Visitas próximas:</h1>
+    </div>
+    <div id="contenido">
+      <div id="visitas">
+        <form action="#" method="post">
+          <fieldset>
+            <legend>Fecha de visita:</legend>
+            <table>
+              <tr>
+                <td class="label"><label for="fecha_inicial_visita">Fecha inicio(dd/mm/aaaa):</label></td>
+                <td><input type="text" id="fecha_inicial_visita" name="fecha_inicial_visita" class="datepick"/></td>
+                <td class="label"><label for="confirma_fecha_1">Confirmado</label></td>
+                <td><input type="checkbox" class="confirma_fecha" id="confirma_fecha_1" name="confirma_fecha_1" value="confirma_fecha_1" /></td>
+              </tr>
+              <tr>
+                <td class="label"><label for="fecha_final_visita">Fecha fin(dd/mm/aaaa):</label></td>
+                <td><input type="text" id="fecha_final_visita" name="fecha_final_visita" class="datepick"/></td>
+                <td class="label"><label for="confirma_fecha_2">Confirmado</label></td>
+                <td><input type="checkbox" class="confirma_fecha" id="confirma_fecha_2" name="confirma_fecha_2" value="confirma_fecha_2" /></td>
+              </tr>
+            </table>
+          </fieldset>
+          <fieldset>
+            <legend>Universidad:</legend>
+            <table id="selectUniversidad">
+              <tr>
+                <td class="label"><label for="seleccionuniversidad">Universidad:</label></td>
+                <td><select id="seleccionuniversidad" name="seleccionuniversidad">
+                    <option value="nueva_universidad">Nueva universidad</option>
+                  </select></td>
+              </tr>
+            </table>
+            <table id="tablaUniversidad">
+              <tr>
+                <td class="label"><label for="nombreuniversidad">Nombre:</label></td>
+                <td><input type="text" id="nombreuniversidad" name="nombre_universidad" /></td>
+              </tr>
+              <tr>
+                <td class="label"><label for="paisuniversidad">Pais:</label></td>
+                <td><input type="text" id="paisuniversidad" name="pais_universidad" /></td>
+              </tr>
+              <tr>
+                <td class="label"><label for="telefonouniversidad">Telefono:</label></td>
+                <td><input type="text" id="telefonouniversidad" name="telefono_universidad" /></td>
+              </tr>
+              <tr>
+                <td class="label"><label for="faxuniversidad">Fax:</label></td>
+                <td><input type="text" id="faxuniversidad" name="fax_universidad" /></td>
+              </tr>
+              <tr>
+                <td class="label"><label for="correouniversidad">Correo electronico:</label></td>
+                <td><input type="text" id="correouniversidad" name="correo_universidad" /></td>
+              </tr>
+              <tr>
+                <td class="label"><label for="direccionuniversidad">Direccion:</label></td>
+                <td><input type="text" id="direccionuniversidad" name="direccion_universidad" /></td>
+              </tr>
+              <tr>
+                <td class="label"><label for="paginauniversidad">Pagina Web:</label></td>
+                <td><input type="text" id="paginauniversidad" name="pagina_universidad" /></td>
+              </tr>
+              <tr>
+                <td class="label"><label for="logouniversidad">Logo:</label></td>
+                <td><input type="file" id="logouniversidad" name="logo_universidad" /></td>
+              </tr>
+            </table>
+          </fieldset>
+          <fieldset>
+            <legend>Coordinador:</legend>
+            <table id="selectCoordinador">
+              <tr>
+                <td class="label"><label for="seleccioncoordinador">Coordinador:</label></td>
+                <td><select id="seleccioncoordinador" name="seleccioncoordinador">
+                    <option value="nuevo_coordinador">Nuevo coordinador</option>
+                  </select></td>
+              </tr>
+            </table>
+            <table id="tablaCoordinador">
+              <tr>
+                <td class="label"><label for="nombrecoordinador">Nombre:</label></td>
+                <td><input type="text" id="nombrecoordinador" name="nombre_coordinador" /></td>
+              </tr>
+              <tr>
+                <td class="label"><label for="titulocoordinador">Titulo:</label></td>
+                <td><input type="text" id="titulocoordinador" name="titulo_coordinador" /></td>
+              </tr>
+              <tr>
+                <td class="label"><label for="puestocoordinador">Puesto:</label></td>
+                <td><input type="text" id="puestocoordinador" name="puesto_coordinador" /></td>
+              </tr>
+              <tr>
+                <td class="label"><label for="telefonocoordinador">Telefono:</label></td>
+                <td><input type="text" id="telefonocoordinador" name="telefono_coordinador" /></td>
+              </tr>
+              <tr>
+                <td class="label"><label for="faxcoordinador">Fax:</label></td>
+                <td><input type="text" id="faxcoordinador" name="fax_coordinador" /></td>
+              </tr>
+              <tr>
+                <td class="label"><label for="correocoordinador">Correo electronico:</label></td>
+                <td><input type="text" id="correocoordinador" name="correo_coordinador" /></td>
+              </tr>
+              <tr>
+                <td class="label"><label for="celularcoordinador">Celular:</label></td>
+                <td><input type="text" id="celularcoordinador" name="celular_coordinador" /></td>
+              </tr>
+            </table>
+          </fieldset>
+          <fieldset>
+            <legend>Actividades:</legend>
+            <div id="actividades">
+              <table id="tablaActividades_0">
+                <tr>
+                  <td class="label"><label for="nombreactividad_0">Actividad:</label></td>
+                  <td><input type="text" class="inputactividad" id="nombreactividad_0" name="nombre_actividad_0" /></td>
+                  <td class="label"><label for="confirmaactividad_0">Confirmado</label></td>
+                  <td><input type="checkbox" class="confirmaactividad" id="confirmaactividad_0" name="confirmaactividad_0" value="confirmaactividad_0" /></td>
+                  <td><input type="button" class="submit" id="masNombreActividad" name="masNombreActividad" value="+" /></td>
+                </tr>
+              </table>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Representantes:</legend>
+            <div id="representantes">
+              <table id="tablaNombres_0">
+                <tr>
+                  <td class="label"><label for="nombrerepresentante_0">Nombre:</label></td>
+                  <td><input type="text" class="inputrepresentante" id="nombrerepresentante_0" name="nombre_representante_0" /></td>
+                  <td><select id="seleccionrepresentante_0" class="selectrepresentante" name="seleccioncoordinador_0">
+                    <option value="nuevo_representante">Nuevo representante</option>
+                  </select></td>
+                  <td class="label"><label for="confirmarepresentante_0">Confirmado</label></td>
+                  <td><input type="checkbox" class="confirmarepresentante" id="confirmarepresentante_0" name="confirmarepresentante_0" value="confirmarepresentante_0" /></td>
+                  <td><input type="button" class="submit" id="masNombreRepresentante" name="masNombreRepresentante" value="+" /></td>
+                </tr>
+              </table>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Entrevistas</legend>
+            <div id="entrevistas">
+              <table id="tablaEntrevistas_0">
+                <tr>
+                  <td class="label"><label for="nombreentrevista_0">Nombre:</label></td>
+                  <td><input type="text" class="inputentrevista" id="nombreentrevista_0" name="nombre_entrevista_0" /></td>
+                  <td><select id="seleccionentrevista_0" class="selectentrevista" name="seleccioncoordinador_0">
+                    <option value="nuevo_entrevista">Nuevo anfitrión</option>
+                  </select></td>
+                  <td class="label"><label for="confirmaentrevista_0">Confirmado</label></td>
+                  <td><input type="checkbox" class="confirmaentrevista" id="confirmaentrevista_0" name="confirmaentrevista_0" value="confirmaentrevista_0" /></td>
+                  <td><input type="button" class="submit" id="masNombreEntrevistas" name="masNombreEntrevistas" value="+" /></td>
+                </tr>
+              </table>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Objetivo:</legend>
+            <textarea rows="5" cols="50" name="objetivo_visita"></textarea>
+          </fieldset>
+          <fieldset>
+            <legend>Expectativas:</legend>
+            <textarea rows="5" cols="50" name="objetivo_visita"></textarea>
+          </fieldset>
+          <fieldset>
+            <legend>Notas:</legend>
+            <textarea rows="5" cols="50" name="notas_visita"></textarea>
+          </fieldset>
+          <input class="submit" type="submit" value="Aceptar" />
+          <input class="submit" type="button" value="Cancelar" />
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="pie">
+    <div id="minimenu">
+      <ul>
+        <li><a href='#'>Visitas</a></li>
+        <li><a href='#'>Agenda</a></li>
+        <li><a href='#'>Retroalimentación</a></li>
+        <li><a href='#'>Historial</a></li>
+        <li><a href='#'>Acerca de...</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>
