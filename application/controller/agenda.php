@@ -1,6 +1,6 @@
 <?php
 class Agenda extends Application{
-    /* Constructor de la clase */
+    /* Constructor de la clase Agenda */
     function __construct(){
         $this->loadModel('model_agenda');
     }
